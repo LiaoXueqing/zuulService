@@ -1,0 +1,33 @@
+server:
+  port: 8080
+  context-path: /api
+
+zuul:
+  sensitiveHeaders: Cookie,Set-Cookie
+  ignoredServices: '*'
+  debug:
+    request: true
+  routes:
+    user:
+      path: /users/**
+      url: http://localhost:8081
+      stripPrefix: false
+    login:
+      path: /login/**
+      url: http://localhost:8081
+      stripPrefix: false
+#    verifications:
+#      path: verifications/**
+#      url: http://localhost:8081
+#      stripPrefix: false
+    todos:
+      path: /todos/**
+      url: http://localhost:8082
+      stripPrefix: false
+
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          netflix: TRACE
