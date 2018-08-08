@@ -26,8 +26,8 @@ public class TodoAuthFilter extends OncePerRequestFilter{
 
     @Value("${secretkey}")
     private String secretKey;
-//    @Autowired
-//    private UserClient userClient;
+    @Autowired
+    private UserClient userClient;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
@@ -65,9 +65,9 @@ public class TodoAuthFilter extends OncePerRequestFilter{
         User user = new User();
         user.setId(id);
         user.setName(name);
-        return user;
+//        return user;
 
-//        return userClient.verifyToken(innerToken);
+        return userClient.verifyToken(innerToken);
     }
 }
 
