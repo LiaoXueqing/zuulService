@@ -34,6 +34,7 @@ public class TodoAuthFilter extends OncePerRequestFilter{
                                     HttpServletResponse response,
                                     FilterChain filterChain)
             throws ServletException, IOException {
+        System.out.println("zuul service request---"+request);
         String token = request.getHeader(HttpHeaders.AUTHORIZATION);
         if (!StringUtils.isEmpty(token)) {
             User user = validateUser(token);
@@ -65,9 +66,9 @@ public class TodoAuthFilter extends OncePerRequestFilter{
         User user = new User();
         user.setId(id);
         user.setName(name);
-//        return user;
+        return user;
 
-        return userClient.verifyToken(innerToken);
+//        return userClient.verifyToken(innerToken);
     }
 }
 

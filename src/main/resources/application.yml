@@ -1,6 +1,31 @@
+#spring:
+#  application:
+#    name: gatway
+#  cloud:
+#    consul:
+#      host: consul
+#      port: 8500
+#      discovery:
+#        instance-id: ${spring.application.name}:${random.int}
+#        health-check-path: /api/health
+
+
 server:
   port: 8080
   context-path: /api
+
+ribbon:
+  eureka:
+    enabled: false
+
+user-service:
+  ribbon:
+    listOfServers: localhost:8081
+
+todo-service:
+  ribbon:
+    listOfServers: localhost:8082
+
 
 zuul:
   sensitiveHeaders: Cookie,Set-Cookie
@@ -10,7 +35,8 @@ zuul:
   routes:
     user:
       path: /users/**
-      url: http://localhost:8081
+#      url: http://localhost:8081
+      serviceId: user-service
       stripPrefix: false
 #    login:
 #      path: /login/**
@@ -22,7 +48,8 @@ zuul:
 #      stripPrefix: false
     todos:
       path: /todos/**
-      url: http://localhost:8082
+#      url: http://localhost:8082
+      serviceId: todo-service
       stripPrefix: false
 
 logging:

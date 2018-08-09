@@ -18,8 +18,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     TodoAuthFilter todoAuthFilter;
-//    @Autowired
-//    LoginFilter loginFilter;
     @Autowired
     private AuthenticationEntryPoint authenticationEntryPoint;
 
@@ -32,8 +30,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().authorizeRequests()
                 .antMatchers("/login").permitAll()
                 .antMatchers(HttpMethod.POST, "/users").permitAll()
+//                .antMatchers("/health").permitAll()
                 .anyRequest().authenticated()
-//                .and().addFilterBefore(loginFilter, UsernamePasswordAuthenticationFilter.class)
                 .and().addFilterBefore(todoAuthFilter, UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint);
     }
