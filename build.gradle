@@ -32,7 +32,7 @@ dependencies {
 	compile('mysql:mysql-connector-java')
 	compile group: 'com.google.guava', name: 'guava', version: '25.1-jre'
 	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
-//	compile('org.springframework.boot:spring-boot-starter-actuator')
+	compile('org.springframework.boot:spring-boot-starter-actuator')
 	compile('org.flywaydb:flyway-core:5.0.7')
 	compile ('com.google.guava:guava:21.0')
 	compile('org.springframework.boot:spring-boot-starter-web')
@@ -50,8 +50,13 @@ dependencies {
 	testCompile('org.springframework.security:spring-security-test')
 	compileOnly('org.projectlombok:lombok')
 	compile('org.springframework.cloud:spring-cloud-starter-feign')
-//	compile('org.springframework.cloud:spring-cloud-starter-consul-discovery')
 	compile('org.springframework.cloud:spring-cloud-starter-zuul')
+
+//	compile('org.springframework.cloud:spring-cloud-starter-consul-discovery')
+	compile('org.springframework.cloud:spring-cloud-starter-config')
+
+	compile('org.springframework.cloud:spring-cloud-starter-hystrix')
+	compile('org.springframework.cloud:spring-cloud-starter-hystrix-dashboard')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 

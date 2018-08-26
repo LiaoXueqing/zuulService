@@ -25,7 +25,10 @@ public class LoginController {
         System.out.println("login controller");
         try{
             User loggedUser = userClient.login(user);
+            System.out.println(">>>>--------"+loggedUser);
+
             if(loggedUser!=null){
+                System.out.println("ggggg");
                 HashMap<String,Object> claims = new HashMap<>();
                 claims.put("cardId",loggedUser.getId());
                 claims.put("name",loggedUser.getName());
@@ -34,6 +37,7 @@ public class LoginController {
                         .addClaims(claims)
                         .signWith(SignatureAlgorithm.HS512, secretKey.getBytes())
                         .compact();
+                System.out.println(strToken);
 
                 return ResponseEntity.ok(strToken);
             }
